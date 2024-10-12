@@ -11,7 +11,7 @@ function MemberCard({
   status,
   id,
   email,
-  setvalue,
+  fetchMembers,
 }) {
   return (
     <div className="card text-center">
@@ -36,8 +36,9 @@ function MemberCard({
           firstName={firstName}
           lastName={lastName}
           email={email}
+          status={status}
           id={id}
-          setvalue={setvalue}
+          fetchMembers={fetchMembers}
         />
 
         <button
@@ -52,7 +53,7 @@ function MemberCard({
           ></i>
         </button>
 
-        <Deletemember id={id} />
+        <Deletemember id={id} fetchMembers={fetchMembers} />
         <div>
           <b>Status : </b>
           {status}

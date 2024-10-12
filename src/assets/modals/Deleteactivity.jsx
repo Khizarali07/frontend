@@ -1,13 +1,13 @@
 import axios from "axios";
 
-function Deletemember({ id, fetchMembers }) {
+function Deleteactivity({ id, fetchActivity }) {
   const handlesubmit = async () => {
     const res = await axios({
       method: "GET",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/delete/${id}`,
+      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/deleteactivity/${id}`,
     });
 
-    fetchMembers();
+    fetchActivity();
   };
   return (
     <div
@@ -58,4 +58,4 @@ function Deletemember({ id, fetchMembers }) {
   );
 }
 
-export default Deletemember;
+export default Deleteactivity;

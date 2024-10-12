@@ -1,14 +1,16 @@
 import "./index.css";
-import AddMember from "./modals/AddMember";
+import Addactivity from "./modals/Addactivity.jsx";
 
-function ChildNavbar({
+function ActivityNavbar({
   sortbyname,
   setsortbyName,
-  sortbydate,
-  setsortbyDate,
-  status,
-  setStatus,
-  fetchM,
+  sortbydateC,
+  setsortbyDateC,
+  sortbydateE,
+  setsortbyDateE,
+  sortbydateF,
+  setsortbyDateF,
+  fetch,
 }) {
   return (
     <>
@@ -34,38 +36,44 @@ function ChildNavbar({
             </select>
 
             <select
-              value={sortbydate}
-              onChange={(evt) => setsortbyDate(evt.target.value)}
+              value={sortbydateC}
+              onChange={(evt) => setsortbyDateC(evt.target.value)}
               className="actions"
             >
               <option value="default">Default</option>
-              <option value="assending_d">
-                Sort by Date (Ascending Order)
-              </option>
-              <option value="desending_d">
-                Sort by Date (Descending Order)
-              </option>
+              <option value="asc">Sort by Date Created (Asc)</option>
+              <option value="desc">Sort by Date Created (Desc)</option>
             </select>
 
             <select
-              value={status}
-              onChange={(evt) => setStatus(evt.target.value)}
+              value={sortbydateE}
+              onChange={(evt) => setsortbyDateE(evt.target.value)}
               className="actions"
             >
-              <option value="ALL">ALL</option>
-              <option value="active">Active Members</option>
-              <option value="less_active">Less Active Members</option>
-              <option value="do_not_contact">Do Not Contact</option>
+              <option value="default">Default</option>
+              <option value="asc">Sort b Last Date (Asc)</option>
+              <option value="desc">Sort by Last Date (Desc)</option>
             </select>
+
+            <select
+              value={sortbydateF}
+              onChange={(evt) => setsortbyDateF(evt.target.value)}
+              className="actions"
+            >
+              <option value="default">Default</option>
+              <option value="asc">Sort by Follow-Up Date (Asc)</option>
+              <option value="desc">Sort by Follow-Up Date (Desc)</option>
+            </select>
+
             <button
               type="button"
               className="btn btn-primary action"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              Add Member
+              Add Activity
             </button>
-            <AddMember fetchM={fetchM} />
+            <Addactivity fetch={fetch} />
           </div>
         </div>
       </nav>
@@ -73,4 +81,4 @@ function ChildNavbar({
   );
 }
 
-export default ChildNavbar;
+export default ActivityNavbar;

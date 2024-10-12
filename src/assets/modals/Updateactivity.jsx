@@ -1,19 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
 
-function Updatemember({
-  firstName,
-  lastName,
-  email,
-  status,
+function Updateactivity({
+  assignTo,
+  activityDescription,
+  notes,
+  dateActivity,
+  reason,
   id,
-  fetchMembers,
+  fetchActivity,
 }) {
   const [formData, setFormData] = useState({
-    firstName,
-    lastName,
-    email,
-    status,
+    assignTo,
+    dateActivity,
+    activityDescription,
+    notes,
+    reason,
   });
 
   const handleChange = (e) => {
@@ -22,21 +24,19 @@ function Updatemember({
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = async () => {
-    // Handle form submission here, e.g., send data to
-    const res = await axios({
+    await axios({
       method: "POST",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateuser/${id}`,
+      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateactivity/${id}`,
       data: { formData },
     });
 
-    fetchMembers();
+    await fetchActivity(); // Refresh the members list after adding
   };
   return (
     <div
       className="modal fade"
-      id={`modal-${id}`}
+      id={`exampleModal-${id}`}
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -45,7 +45,7 @@ function Updatemember({
         <div className="modal-content">
           <div className="modal-header">
             <h2 className="modal-title fs-5" id="exampleModalLabel">
-              Update Member
+              Add New Activity
             </h2>
             <button
               type="button"
@@ -54,48 +54,57 @@ function Updatemember({
               aria-label="Close"
             ></button>
           </div>
+
           <div className="modal-body">
             <form>
-              <label htmlFor="firstName">First Name:</label>
+              <label htmlFor="firstName">Assigned To :</label>
               <input
                 type="text"
                 id="firstName"
-                name="firstName"
-                value={formData.firstName}
+                name="assignedTo"
+                value={formData.assignTo}
                 onChange={handleChange}
                 required
               />
-              <label htmlFor="lastName">Last Name:</label>
+              <label htmlFor="lastName">Date Activity:</label>
+              <input
+                type="date"
+                id="lastName"
+                name="dateActivity"
+                value={formData.dateActivity}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="email">Activity Description:</label>
               <input
                 type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
                 id="email"
-                name="email"
-                value={formData.email}
+                name="activityDescription"
+                value={formData.activityDescription}
                 onChange={handleChange}
                 required
               />
-              <label htmlFor="email">Status :</label>
-              <select
-                name="status"
-                value={formData.status}
+              <label htmlFor="password">Notes:</label>
+              <input
+                type="text"
+                id="password"
+                name="notes"
+                value={formData.notes}
                 onChange={handleChange}
-                className=""
-              >
-                <option value="Active">Active</option>
-                <option value="Less Active">Less Active</option>
-                <option value="Do Not Contact">Don Not Contact</option>
-              </select>
+                required
+              />
+              <label htmlFor="password">Reason :</label>
+              <input
+                type="text"
+                id="password"
+                name="reason"
+                value={formData.reason}
+                onChange={handleChange}
+                required
+              />
             </form>
           </div>
+          {/* Modal footer */}
           <div className="modal-footer">
             <button
               type="button"
@@ -107,10 +116,8 @@ function Updatemember({
             <button
               type="button"
               className="btn btn-primary"
+              onClick={handleSubmit}
               data-bs-dismiss="modal"
-              onClick={() => {
-                handleSubmit();
-              }}
             >
               Save changes
             </button>
@@ -121,4 +128,4 @@ function Updatemember({
   );
 }
 
-export default Updatemember;
+export default Updateactivity;

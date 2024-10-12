@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function AddMember() {
+export default function AddMember({ fetchM }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,18 +17,23 @@ function AddMember() {
   };
 
   const handleSubmit = async () => {
-    // Handle form submission here, e.g., send data to
-    const res = await axios({
-      method: "POST",
-      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
-      data: { formData },
-    });
+    try {
+      await axios({
+        method: "POST",
+        url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
+        data: { formData },
+      });
+      await fetchM(); // Refresh the members list after adding
+    } catch (error) {
+      console.error("Error adding member:", error);
+    }
   };
+
   return (
     <div
       className="modal fade"
       id="exampleModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
@@ -36,7 +41,7 @@ function AddMember() {
         <div className="modal-content">
           <div className="modal-header">
             <h2 className="modal-title fs-5" id="exampleModalLabel">
-              Add New Member
+              Add New Activity
             </h2>
             <button
               type="button"
@@ -45,6 +50,7 @@ function AddMember() {
               aria-label="Close"
             ></button>
           </div>
+          {/* Modal body */}
           <div className="modal-body">
             <form>
               <label htmlFor="firstName">First Name:</label>
@@ -85,6 +91,7 @@ function AddMember() {
               />
             </form>
           </div>
+          {/* Modal footer */}
           <div className="modal-footer">
             <button
               type="button"
@@ -96,9 +103,7 @@ function AddMember() {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={async () => {
-                await handleSubmit();
-              }}
+              onClick={handleSubmit}
               data-bs-dismiss="modal"
             >
               Save changes
@@ -109,5 +114,3 @@ function AddMember() {
     </div>
   );
 }
-
-export default AddMember;

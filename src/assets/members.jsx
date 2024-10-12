@@ -18,7 +18,7 @@ function Members() {
   const [sortbydate, setsortbyDate] = useState("default");
   const [status, setStatus] = useState("ALL");
 
-  const fun = async () => {
+  const fetchMembers = async () => {
     const cookieValue = Cookies.get("jwt");
     console.log(cookieValue);
     if (!cookieValue) {
@@ -163,12 +163,12 @@ function Members() {
   }, [sortbydate, status]);
 
   useEffect(() => {
-    fun();
-  }, []);
-
-  useEffect(() => {
     handleSortByName();
   }, [sortbyname]);
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
 
   return (
     <>
@@ -180,6 +180,7 @@ function Members() {
         setsortbyDate={setsortbyDate}
         status={status}
         setStatus={setStatus}
+        fetchM={fetchMembers}
       />
       <div className="row">
         {sorteditems.map((member) => (
@@ -196,6 +197,7 @@ function Members() {
               status={member.status}
               email={member.email}
               id={member._id}
+              fetchMembers={fetchMembers}
             />
           </div>
         ))}
