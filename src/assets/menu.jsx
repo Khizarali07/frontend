@@ -16,7 +16,7 @@ export default function Menu() {
             id="offcanvasExampleLabel"
             style={{ marginTop: "6rem", marginLeft: "1rem" }}
           >
-
+            <div className="sb-login-box">
               <Link to="/members" className="ga-dataset user-logout ms-1">
                 <i
                   className="fa-solid fa-user me-3 text-white"
