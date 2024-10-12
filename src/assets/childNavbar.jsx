@@ -1,5 +1,5 @@
 import "./index.css";
-import AddMember from "./modals/AddMember";
+import AddMember from "./modals/addMember.jsx";
 
 function ChildNavbar({
   sortbyname,
