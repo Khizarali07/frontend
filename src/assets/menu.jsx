@@ -16,10 +16,6 @@ export default function Menu() {
             id="offcanvasExampleLabel"
             style={{ marginTop: "6rem", marginLeft: "1rem" }}
           >
-            <div className="sb-login-box">
-              <div id="nav-logo" style={{ flexGrow: 0 }}>
-                <Link to="/" className="ga-dataset"></Link>
-              </div>
 
               <Link to="/members" className="ga-dataset user-logout ms-1">
                 <i
