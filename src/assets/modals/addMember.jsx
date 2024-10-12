@@ -24,7 +24,7 @@ export default function AddMember({ fetchM }) {
         data: { formData },
       });
 
-      await fetchM("desending_d");
+      await fetchM();
       // Refresh the members list after adding
     } catch (error) {
       console.error("Error adding member:", error);
