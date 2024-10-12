@@ -1,0 +1,20 @@
+.h-screen {
+  font-family: "Open Sans", sans-serif;
+
+  background: linear-gradient(
+      180deg,
+      rgba(71, 147, 255, 1) 0%,
+      rgba(71, 147, 255, 0.9) 35%,
+      rgba(71, 147, 255, 0.6) 100%
+    ),
+    url(https://placehold.co) no-repeat center center;
+  background-size: cover;
+}
+
+.formbox {
+  background-color: transparent;
+}
+
+.flex.items-center.border-b-2.border-blue-200.pb-2 input::placeholder {
+  color: white; /* Set placeholder text color to white */
+}
