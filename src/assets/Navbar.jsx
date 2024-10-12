@@ -3,6 +3,7 @@ import user from "./Media/user.png";
 import Cookies from "js-cookie";
 
 import Menu from "./menu";
+import "./App.css";
 
 function Navbar() {
   return (

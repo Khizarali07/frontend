@@ -5,6 +5,7 @@ import MemberCard from "./MemberCard";
 import axios from "axios";
 import Cookies from "js-cookie";
 import ChildNavbar from "./childNavbar";
+import "./style_home.css";
 
 function Members() {
   const navigate = useNavigate();
@@ -186,7 +187,11 @@ function Members() {
         {sorteditems.map((member) => (
           <div
             className="col-sm-4 col-md-4 col-lg-4"
-            style={{ textTransform: "capitalize" }}
+            style={{
+              textTransform: "capitalize",
+              display: "flex",
+              justifyContent: "center",
+            }}
             key={member._id}
           >
             <MemberCard

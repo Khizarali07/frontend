@@ -5,6 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import ActivityCard from "./ActivityCard";
 import ActivityNavbar from "./activitynavbar";
+import "./style_home.css";
 
 function Activity() {
   const navigate = useNavigate();

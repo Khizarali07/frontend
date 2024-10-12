@@ -58,7 +58,7 @@ function ActivityNavbar({
             <select
               value={sortbydateF}
               onChange={(evt) => setsortbyDateF(evt.target.value)}
-              className="actions"
+              className="actions color"
             >
               <option value="default">Default</option>
               <option value="asc">Sort by Follow-Up Date (Asc)</option>

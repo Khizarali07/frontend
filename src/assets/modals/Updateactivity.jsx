@@ -6,6 +6,7 @@ function Updateactivity({
   activityDescription,
   notes,
   dateActivity,
+  dateFollowUp,
   reason,
   id,
   fetchActivity,
@@ -13,6 +14,7 @@ function Updateactivity({
   const [formData, setFormData] = useState({
     assignTo,
     dateActivity,
+    dateFollowUp,
     activityDescription,
     notes,
     reason,
@@ -72,6 +74,15 @@ function Updateactivity({
                 id="lastName"
                 name="dateActivity"
                 value={formData.dateActivity}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="lastName">Follow up Date :</label>
+              <input
+                type="date"
+                id="lastName"
+                name="dateFollowUp"
+                value={formData.dateFollowUp}
                 onChange={handleChange}
                 required
               />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 export default function AddActivity({ fetch }) {
@@ -27,8 +27,6 @@ export default function AddActivity({ fetch }) {
         url: `https://backend-production-e5ac.up.railway.app/api/v1/users/createactivity/${cookieValue}`,
         data: { formData },
       });
-
-      await fetch(); // Refresh the members list after adding
     } catch (error) {
       console.error("Error adding member:", error);
     }
@@ -76,6 +74,7 @@ export default function AddActivity({ fetch }) {
                 onChange={handleChange}
                 required
               />
+
               <label htmlFor="email">Activity Description:</label>
               <input
                 type="text"

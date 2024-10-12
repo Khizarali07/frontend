@@ -13,16 +13,19 @@ function ActivityCard({
   fetchActivity,
 }) {
   return (
-    <div className="card container my-3" style={{ height: "310px" }}>
+    <div
+      className="card container text-center my-3"
+      style={{ height: "330px" }}
+    >
       <div className="card-body">
-        <p className="card-title d-flex justify-content-center align-items-start">
-          <h2>Assign To : </h2>
-          {assignTo}
+        <p className="card-title" style={{ fontSize: "15px" }}>
+          <b style={{ marginRight: "20px" }}>Assign To : </b>
+          {` ${assignTo}`}
         </p>
-        <h6 className="card-subtitle mb-2 text-body-secondary">
+        <h6 className="card-subtitle my-3 text-body-secondary">
           {activityDescription}
         </h6>
-        <p className="card-text">Notes :{notes}</p>
+        <p className="card-text mt-3">Notes : {notes}</p>
         <button
           className="me-3 bg-white"
           data-bs-toggle="modal"
@@ -39,6 +42,7 @@ function ActivityCard({
           activityDescription={activityDescription}
           notes={notes}
           dateActivity={dateActivity}
+          dateFollowUp={dateFollowUp}
           reason={reason}
           id={id}
           fetchActivity={fetchActivity}

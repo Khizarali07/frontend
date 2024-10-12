@@ -65,7 +65,7 @@ function ChildNavbar({
             >
               Add Member
             </button>
-            <AddMember fetchM={fetchM} />
+            <AddMember fetchM={setsortbyDate} />
           </div>
         </div>
       </nav>

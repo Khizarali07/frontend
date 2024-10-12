@@ -18,12 +18,14 @@ export default function AddMember({ fetchM }) {
 
   const handleSubmit = async () => {
     try {
-      await axios({
+      const res = await axios({
         method: "POST",
         url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
         data: { formData },
       });
-      await fetchM(); // Refresh the members list after adding
+
+      await fetchM("desending_d");
+      // Refresh the members list after adding
     } catch (error) {
       console.error("Error adding member:", error);
     }

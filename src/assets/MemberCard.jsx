@@ -14,7 +14,7 @@ function MemberCard({
   fetchMembers,
 }) {
   return (
-    <div className="card text-center">
+    <div className="card text-center mt-4" style={{ width: "40rem" }}>
       <div className="card-header d-flex justify-content-center">
         <img src={image} alt="profile-image" />
       </div>

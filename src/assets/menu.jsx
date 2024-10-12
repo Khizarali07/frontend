@@ -18,26 +18,18 @@ export default function Menu() {
           >
             <div className="sb-login-box">
               <div id="nav-logo" style={{ flexGrow: 0 }}>
-                <Link to="/" className="ga-dataset">
-                  {/* <img
-                    src={logo}
-                    className="logo-img"
-                    alt="PriceOye.pk"
-                    width="122"
-                    height="48"
-                  ></img> */}
-                </Link>
+                <Link to="/" className="ga-dataset"></Link>
               </div>
 
               <Link to="/members" className="ga-dataset user-logout ms-1">
                 <i
-                  className="fa-solid fa-user me-3"
+                  className="fa-solid fa-user me-3 text-white"
                   style={{ fontSize: "20px", overflowY: "hidden" }}
                 ></i>
                 Members
               </Link>
               <Link
-                to="/activities"
+                to="/"
                 className="ga-dataset user-logout"
                 style={{ width: "200px" }}
               >
