@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cookies from "js-cookie";
 
 export default function AddActivity({ fetch }) {
@@ -27,6 +27,7 @@ export default function AddActivity({ fetch }) {
         url: `https://backend-production-e5ac.up.railway.app/api/v1/users/createactivity/${cookieValue}`,
         data: { formData },
       });
+      await fetch();
     } catch (error) {
       console.error("Error adding member:", error);
     }
