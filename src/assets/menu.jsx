@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Menu() {
+export default function Menu({ user }) {
   return (
     <>
       <div
@@ -17,13 +17,17 @@ export default function Menu() {
             style={{ marginTop: "6rem", marginLeft: "1rem" }}
           >
             <div className="sb-login-box">
-              <Link to="/members" className="ga-dataset user-logout ms-1">
-                <i
-                  className="fa-solid fa-user me-3 text-white"
-                  style={{ fontSize: "20px", overflowY: "hidden" }}
-                ></i>
-                Members
-              </Link>
+              {user && user === "Admin" ? (
+                <Link to="/members" className="ga-dataset user-logout ms-1">
+                  <i
+                    className="fa-solid fa-user me-3 text-white"
+                    style={{ fontSize: "20px", overflowY: "hidden" }}
+                  ></i>
+                  Members
+                </Link>
+              ) : (
+                ""
+              )}
               <Link
                 to="/"
                 className="ga-dataset user-logout"

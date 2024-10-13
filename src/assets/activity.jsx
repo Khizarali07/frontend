@@ -7,7 +7,7 @@ import ActivityCard from "./ActivityCard";
 import ActivityNavbar from "./activitynavbar";
 import "./style_home.css";
 
-function Activity() {
+function Activity({ user }) {
   const navigate = useNavigate();
 
   const [sortbyname, setsortbyName] = useState("default");
@@ -143,7 +143,7 @@ function Activity() {
   }, []);
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <ActivityNavbar
         sortbyname={sortbyname}
         setsortbyName={setsortbyName}

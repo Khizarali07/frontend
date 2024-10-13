@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import ChildNavbar from "./childNavbar";
 import "./style_home.css";
 
-function Members() {
+function Members({ user }) {
   const navigate = useNavigate();
   const [sorteditems, setsorteditems] = useState([]);
 
@@ -183,7 +183,7 @@ function Members() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <ChildNavbar
         sortbyname={sortbyname}
         setsortbyName={setsortbyName}

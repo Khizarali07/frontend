@@ -11,7 +11,9 @@ import { useEffect, useState } from "react";
 function App() {
   const [user, setuser] = useState("");
   const checkadmin = async () => {
-    const cookieValue = Cookies.get("jwt");
+    const cookieValue = Cookies.get("userRole");
+
+    setuser(cookieValue);
   };
 
   useEffect(() => {
@@ -20,10 +22,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Activity />} />
-        <Route path="/members" element={<Members />} />
+        <Route path="/" element={<Activity user={user} />} />
+        {user && user === "Admin" ? (
+          <Route path="/members" element={<Members user={user} />} />
+        ) : (
+          ""
+        )}
 
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login user={user} setuser={setuser} />}
+        />
       </Routes>
     </BrowserRouter>
   );

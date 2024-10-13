@@ -1,11 +1,11 @@
 import bar from "./Media/bar.svg";
-import user from "./Media/user.png";
+import userimg from "./Media/user.png";
 import Cookies from "js-cookie";
 
 import Menu from "./menu";
 import "./App.css";
 
-function Navbar() {
+function Navbar({ user }) {
   return (
     <>
       <nav
@@ -24,7 +24,7 @@ function Navbar() {
             >
               <img src={bar} alt="bar" />
             </button>
-            <Menu />
+            <Menu user={user} />
 
             <a href="/" className="navbar-brand ms-3">
               {/* <img src={logo} alt="logo" /> */}
@@ -33,7 +33,7 @@ function Navbar() {
 
           <div style={{ display: "flex" }}>
             <img
-              src={user}
+              src={userimg}
               alt="profile image"
               style={{ width: "50px", height: "50px", marginRight: "5px" }}
             />
