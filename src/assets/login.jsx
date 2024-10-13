@@ -28,6 +28,7 @@ function Login() {
         email,
         password,
       },
+      withCredentials: true, // Important: include credentials
     });
     console.log(res);
 
