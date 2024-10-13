@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-function Login({ user, setuser }) {
+function Login({ setuser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function Login({ user, setuser }) {
     if (res.data.status == "success") {
       setuser(res.data.data.user.role);
       Cookies.set("jwt", res.data.token, { expires: 100 });
-      Cookies.set("userRole", user, { expires: 100 });
+      Cookies.set("userRole", res.data.data.user.role, { expires: 100 });
       navigate("/");
     } else if (res.data.message === "Invalid email or password") {
       alert(res.data.message);

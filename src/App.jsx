@@ -29,10 +29,7 @@ function App() {
           ""
         )}
 
-        <Route
-          path="/login"
-          element={<Login user={user} setuser={setuser} />}
-        />
+        <Route path="/login" element={<Login setuser={setuser} />} />
       </Routes>
     </BrowserRouter>
   );

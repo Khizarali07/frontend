@@ -49,6 +49,7 @@ function Navbar({ user }) {
               }}
               onClick={() => {
                 Cookies.remove("jwt");
+                Cookies.remove("userRole");
                 window.location.reload();
               }}
             >
