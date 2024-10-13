@@ -32,6 +32,7 @@ function Activity() {
       data: {
         jwt: cookieValue,
       },
+      headers: { "Content-Type": "application/json" },
       // Important: include credentials
     });
     activity = res.data.data.currentActivity;
