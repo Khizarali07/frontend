@@ -17,11 +17,12 @@ function App() {
       method: "GET",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${cookieValue}`,
       // Important: include credentials
+      headers: { "Content-Type": "application/json" },
     });
 
     console.log(res.data.data);
 
-    setuser(res.data.data.user);
+    setuser(res.data.data.user.role);
   };
 
   useEffect(() => {
