@@ -6,19 +6,20 @@ import Activity from "./assets/activity";
 
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [user, setuser] = useState("");
   const checkadmin = async () => {
     const cookieValue = Cookies.get("jwt");
 
-    // const res = await axios({
-    //   method: "GET",
-    //   url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${cookieValue}`,
-    //   // Important: include credentials
-    // });
+    const res = await axios({
+      method: "GET",
+      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${cookieValue}`,
+      // Important: include credentials
+    });
 
-    console.log(res);
+    setuser(res.data.data.user);
   };
 
   useEffect(() => {
@@ -28,7 +29,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Activity />} />
-        <Route path="/members" element={<Members />} />
+        {user === "Admin" ? (
+          <Route path="/members" element={<Members />} />
+        ) : (
+          ""
+        )}
 
         <Route path="/login" element={<Login />} />
       </Routes>
