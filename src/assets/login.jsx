@@ -12,7 +12,7 @@ function Login() {
   const [cookie, setCookie] = useState("");
   useEffect(() => {
     const cookieValue = Cookies.get("jwt");
-    console.log(cookieValue);
+
     if (cookieValue) {
       navigate("/");
     }
