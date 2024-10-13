@@ -26,6 +26,7 @@ export default function AddActivity({ fetch }) {
         method: "POST",
         url: `https://backend-production-e5ac.up.railway.app/api/v1/users/createactivity/${cookieValue}`,
         data: { formData },
+        withCredentials: true, // Important: include credentials
       });
       await fetch();
     } catch (error) {

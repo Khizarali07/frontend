@@ -29,6 +29,7 @@ function Updatemember({
       method: "POST",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateuser/${id}`,
       data: { formData },
+      withCredentials: true, // Important: include credentials
     });
 
     fetchMembers();
