@@ -28,7 +28,7 @@ function Members() {
     const res = await axios({
       method: "GET",
       url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
-      withCredentials: true, // Important: include credentials
+      // Important: include credentials
     });
     members = res.data.data.data;
 
@@ -61,7 +61,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -72,7 +72,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/dateasc",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         console.log(res);
         members = res.data.data.data;
@@ -84,7 +84,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/datedesc",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -97,7 +97,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/active",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -109,7 +109,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/activedesc",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -122,7 +122,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/notactive",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -134,7 +134,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/notactivedesc",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -147,7 +147,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/lactive",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 
@@ -159,7 +159,7 @@ function Members() {
         const res = await axios({
           method: "GET",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/lactivedesc",
-          withCredentials: true, // Important: include credentials
+          // Important: include credentials
         });
         members = res.data.data.data;
 

@@ -32,7 +32,7 @@ function Activity() {
       data: {
         jwt: cookieValue,
       },
-      withCredentials: true, // Important: include credentials
+      // Important: include credentials
     });
     activity = res.data.data.currentActivity;
     console.log(activity);

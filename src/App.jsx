@@ -15,7 +15,7 @@ function App() {
     const res = await axios({
       method: "GET",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${cookieValue}`,
-      withCredentials: true, // Important: include credentials
+      // Important: include credentials
     });
 
     console.log(res);

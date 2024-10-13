@@ -31,7 +31,7 @@ function Updateactivity({
       method: "POST",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateactivity/${id}`,
       data: { formData },
-      withCredentials: true, // Important: include credentials
+      // Important: include credentials
     });
 
     await fetchActivity(); // Refresh the members list after adding

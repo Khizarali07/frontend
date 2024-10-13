@@ -5,7 +5,7 @@ function Deleteactivity({ id, fetchActivity }) {
     const res = await axios({
       method: "GET",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/deleteactivity/${id}`,
-      withCredentials: true, // Important: include credentials
+      // Important: include credentials
     });
 
     fetchActivity();

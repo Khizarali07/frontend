@@ -22,7 +22,7 @@ export default function AddMember({ fetchM }) {
         method: "POST",
         url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
         data: { formData },
-        withCredentials: true, // Important: include credentials
+        // Important: include credentials
       });
 
       await fetchM();
