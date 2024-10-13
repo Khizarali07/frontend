@@ -12,17 +12,6 @@ function App() {
   const [user, setuser] = useState("");
   const checkadmin = async () => {
     const cookieValue = Cookies.get("jwt");
-
-    const res = await axios({
-      method: "GET",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${cookieValue}`,
-      // Important: include credentials
-      headers: { "Content-Type": "application/json" },
-    });
-
-    console.log(res.data.data);
-
-    setuser(res.data.data.user.role);
   };
 
   useEffect(() => {
@@ -32,11 +21,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Activity />} />
-        {user === "Admin" ? (
-          <Route path="/members" element={<Members />} />
-        ) : (
-          ""
-        )}
+        <Route path="/members" element={<Members />} />
 
         <Route path="/login" element={<Login />} />
       </Routes>
