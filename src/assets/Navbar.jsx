@@ -2,10 +2,13 @@ import bar from "./Media/bar.svg";
 import userimg from "./Media/user.png";
 import Cookies from "js-cookie";
 
+import { useNavigate } from "react-router-dom";
+
 import Menu from "./menu";
 import "./App.css";
 
 function Navbar({ user }) {
+  const navigate = useNavigate();
   return (
     <>
       <nav
@@ -50,6 +53,7 @@ function Navbar({ user }) {
               onClick={() => {
                 Cookies.remove("jwt");
                 Cookies.remove("userRole");
+                navigate("/login");
                 window.location.reload();
               }}
             >
