@@ -19,6 +19,8 @@ function App() {
       // Important: include credentials
     });
 
+    console.log(res.data.data);
+
     setuser(res.data.data.user);
   };
 
