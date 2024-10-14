@@ -18,13 +18,15 @@ export default function Menu({ user }) {
           >
             <div className="sb-login-box">
               {user && user === "Admin" ? (
-                <Link to="/members" className="ga-dataset user-logout ms-1">
-                  <i
-                    className="fa-solid fa-user me-3 text-white"
-                    style={{ fontSize: "20px", overflowY: "hidden" }}
-                  ></i>
-                  Members
-                </Link>
+                <div onClick={() => window.location.reload()}>
+                  <Link to="/members" className="ga-dataset user-logout ms-1">
+                    <i
+                      className="fa-solid fa-user me-3 text-white"
+                      style={{ fontSize: "20px", overflowY: "hidden" }}
+                    ></i>
+                    Members
+                  </Link>
+                </div>
               ) : (
                 ""
               )}

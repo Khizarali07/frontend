@@ -22,8 +22,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Activity user={user} />} />
-
-        <Route path="/members" element={<Members user={user} />} />
+        {user && user === "Admin" ? (
+          <Route path="/members" element={<Members user={user} />} />
+        ) : (
+          ""
+        )}
 
         <Route path="/login" element={<Login setuser={setuser} />} />
       </Routes>
