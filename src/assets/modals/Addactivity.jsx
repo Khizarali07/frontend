@@ -34,6 +34,7 @@ export default function AddActivity({ fetch }) {
             // Important: include credentials
           });
           alert("activity added successfully");
+          window.$("#exampleModal").modal("hide");
         }
 
         setFormData({
@@ -45,7 +46,6 @@ export default function AddActivity({ fetch }) {
         });
 
         await fetch();
-        window.$("#exampleModal").modal("hide");
       } catch (error) {
         console.error("Error adding member:", error);
       }
