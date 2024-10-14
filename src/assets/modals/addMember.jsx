@@ -19,10 +19,15 @@ export default function AddMember({ fetchM }) {
     });
   };
 
+  const hide = () => {
+    window.$("#exampleModal").modal("hide");
+  };
+
   const handleSubmit = async () => {
     if (formRef.current.checkValidity()) {
       try {
         setTimeout(fetchM, 2000);
+        setTimeout(hide, 2000);
         res = await axios({
           method: "POST",
           url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",

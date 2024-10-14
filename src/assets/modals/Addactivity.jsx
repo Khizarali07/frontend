@@ -45,6 +45,7 @@ export default function AddActivity({ fetch }) {
 
         alert("activity added successfully");
         await fetch();
+        window.$("#exampleModal").modal("hide");
       } catch (error) {
         console.error("Error adding member:", error);
       }
