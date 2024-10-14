@@ -76,6 +76,7 @@ export default function AddMember({ fetchM }) {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="lastName">Last Name:</label>
@@ -85,6 +86,7 @@ export default function AddMember({ fetchM }) {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="email">Email:</label>
@@ -94,6 +96,7 @@ export default function AddMember({ fetchM }) {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="password">Password:</label>
@@ -103,6 +106,7 @@ export default function AddMember({ fetchM }) {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
             </form>
