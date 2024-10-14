@@ -41,7 +41,7 @@ function ActivityCard({
         </h6>
         <p className="card-text mt-3">Notes : {notes}</p>
         <button
-          className="me-3 bg-white"
+          className="me-3 bg-white my-3"
           data-bs-toggle="modal"
           data-bs-target={`#exampleModal-${id}`}
           style={{ border: "none" }}
@@ -79,15 +79,15 @@ function ActivityCard({
 
         <Deleteactivity id={id} fetchActivity={fetchActivity} />
 
-        <p>
+        <p className="my-2">
           <strong>Created date : </strong>
           {formatDate(dateCreated)}
         </p>
-        <p>
+        <p className="my-2">
           <strong>Last Date : </strong>
           {formatDate(dateActivity)}
         </p>
-        <p>
+        <p className="my-2">
           <strong>Follow Up : </strong>
           {formatDate(dateFollowUp)}
         </p>
