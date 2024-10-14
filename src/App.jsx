@@ -5,7 +5,6 @@ import Members from "./assets/members";
 import Activity from "./assets/activity";
 
 import Cookies from "js-cookie";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Activity user={user} />} />
-        {user && user === "Admin" ? (
+        {user === "Admin" ? (
           <Route path="/members" element={<Members user={user} />} />
         ) : (
           ""

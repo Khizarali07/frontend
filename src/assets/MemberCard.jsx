@@ -34,6 +34,7 @@ function MemberCard({
           className="me-3 bg-white"
           data-bs-toggle="modal"
           data-bs-target={`#modal-${id}`}
+          style={{ border: "none" }}
         >
           <i
             className="fa-solid fa-pen-to-square text-dark"
@@ -55,6 +56,7 @@ function MemberCard({
           className="bg-white"
           data-bs-toggle="modal"
           data-bs-target={`#modal-delete-${id}`}
+          style={{ border: "none" }}
         >
           <i
             className="fa-solid fa-trash text-dark"
