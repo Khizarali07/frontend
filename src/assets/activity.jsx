@@ -41,7 +41,6 @@ function Activity({ user }) {
         data: {
           jwt: cookieValue,
         },
-        headers: { "Content-Type": "application/json" },
         // Important: include credentials
       });
     }
