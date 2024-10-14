@@ -34,16 +34,15 @@ export default function AddActivity({ fetch }) {
             // Important: include credentials
           });
           alert("activity added successfully");
+          setFormData({
+            LinkID: "",
+            dateActivity: "",
+            activityDescription: "",
+            notes: "",
+            reason: "",
+          });
           window.$("#exampleModal").modal("hide");
         }
-
-        setFormData({
-          LinkID: "",
-          dateActivity: "",
-          activityDescription: "",
-          notes: "",
-          reason: "",
-        });
 
         await fetch();
       } catch (error) {
