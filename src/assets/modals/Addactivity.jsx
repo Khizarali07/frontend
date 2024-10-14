@@ -11,7 +11,6 @@ export default function AddActivity({ fetch }) {
   });
 
   const formRef = useRef(null); // Reference for the form
-  const [closeModal, setCloseModal] = useState("open"); // Reference for the modal
   const [allusers, setallusers] = useState([]);
 
   const handleChange = (e) => {
@@ -46,8 +45,6 @@ export default function AddActivity({ fetch }) {
 
         alert("activity added successfully");
         await fetch();
-
-        setCloseModal("modal"); // Close the modal after adding the activity
       } catch (error) {
         console.error("Error adding member:", error);
       }
@@ -162,7 +159,6 @@ export default function AddActivity({ fetch }) {
               type="button"
               className="btn btn-primary"
               onClick={handleSubmit}
-              data-bs-dismiss={closeModal}
             >
               Save changes
             </button>
