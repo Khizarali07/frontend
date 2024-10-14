@@ -55,14 +55,18 @@ export default function AddActivity({ fetch }) {
   };
 
   const fetchmembers = async () => {
-    const res = await axios({
-      method: "GET",
-      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
-      // Important: include credentials
-    });
-    const members = res.data.data.data;
-
-    setallusers(members);
+    try {
+      const res = await axios({
+        method: "GET",
+        url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
+        // Important: include credentials if needed
+      });
+      const members = res.data.data.data;
+      console.log("Members fetched:", members); // Log the response
+      setallusers(members);
+    } catch (error) {
+      console.error("Error fetching members:", error); // Log any errors
+    }
   };
 
   useEffect(() => fetchmembers, []);
