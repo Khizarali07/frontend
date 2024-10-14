@@ -11,6 +11,7 @@ function Deleteactivity({ id, fetchActivity }) {
     if (res.data.status) {
       alert("Activity deleted successfully");
     }
+    window.location.reload();
 
     fetchActivity();
   };
