@@ -9,7 +9,6 @@ export default function AddMember({ fetchM }) {
     password: "",
   });
   const formRef = useRef(null);
-  const modalRef = useRef(null); // Reference for the modal
 
   let res = "";
 
@@ -31,9 +30,6 @@ export default function AddMember({ fetchM }) {
           // Important: include credentials
         });
 
-        const modalInstance = new window.bootstrap.Modal(modalRef.current);
-        modalInstance.hide();
-
         // Refresh the members list after adding
       } catch (error) {
         alert(`Error adding member: ${error.response.data.message}`);
@@ -51,7 +47,6 @@ export default function AddMember({ fetchM }) {
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-      ref={modalRef}
     >
       <div className="modal-dialog">
         <div className="modal-content">
