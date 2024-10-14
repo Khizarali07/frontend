@@ -50,9 +50,7 @@ function Deleteactivity({ id, fetchActivity }) {
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
-              onClick={() => {
-                handlesubmit();
-              }}
+              onClick={handlesubmit}
             >
               Save changes
             </button>
