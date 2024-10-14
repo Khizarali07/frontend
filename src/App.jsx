@@ -17,12 +17,12 @@ function App() {
 
   useEffect(() => {
     checkadmin();
-  }, []);
+  }, [user]);
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Activity user={user} />} />
-        {user === "Admin" ? (
+        {user && user === "Admin" ? (
           <Route path="/members" element={<Members user={user} />} />
         ) : (
           ""
