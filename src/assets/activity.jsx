@@ -22,19 +22,29 @@ function Activity({ user }) {
 
   const fetchActivity = async () => {
     const cookieValue = Cookies.get("jwt");
-    console.log(cookieValue);
+    const userRole = Cookies.get("userRole");
+    let res = [];
+
+    console.log(cookieValue, userRole);
     if (!cookieValue) {
       navigate("/login");
     }
-    const res = await axios({
-      method: "POST",
-      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getallactivity",
-      data: {
-        jwt: cookieValue,
-      },
-      headers: { "Content-Type": "application/json" },
-      // Important: include credentials
-    });
+    if (userRole === "Admin") {
+      res = await axios({
+        method: "GET",
+        url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getallactivity",
+      });
+    } else {
+      res = await axios({
+        method: "POST",
+        url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getactivity",
+        data: {
+          jwt: cookieValue,
+        },
+        headers: { "Content-Type": "application/json" },
+        // Important: include credentials
+      });
+    }
     activity = res.data.data.currentActivity;
     console.log(activity);
 
@@ -171,6 +181,7 @@ function Activity({ user }) {
               dateFollowUp={activity.dateFollowUp}
               reason={activity.reason}
               id={activity._id}
+              linkID={activity.linkID}
               fetchActivity={fetchActivity}
             />
           </div>

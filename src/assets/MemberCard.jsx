@@ -13,6 +13,15 @@ function MemberCard({
   email,
   fetchMembers,
 }) {
+  const formatDate = (dateString) => {
+    const dateObject = new Date(dateString);
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const day = String(dateObject.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <div className="card text-center mt-4" style={{ width: "40rem" }}>
       <div className="card-header d-flex justify-content-center">
@@ -59,7 +68,7 @@ function MemberCard({
           {status}
         </div>
       </div>
-      <div className="card-footer text-muted">{date} ago</div>
+      <div className="card-footer text-muted">{formatDate(date)}</div>
     </div>
   );
 }

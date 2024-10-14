@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Await } from "react-router-dom";
 
 function Updateactivity({
   assignTo,
@@ -9,16 +10,19 @@ function Updateactivity({
   dateFollowUp,
   reason,
   id,
+  LinkID,
   fetchActivity,
 }) {
   const [formData, setFormData] = useState({
-    assignTo,
+    LinkID,
     dateActivity,
     dateFollowUp,
     activityDescription,
     notes,
     reason,
   });
+
+  const [allusers, setallusers] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -27,15 +31,35 @@ function Updateactivity({
     });
   };
   const handleSubmit = async () => {
-    await axios({
+    // if (!formData.LinkID === "") {
+    const res = await axios({
       method: "POST",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateactivity/${id}`,
       data: { formData },
       // Important: include credentials
     });
 
+    if (res.data.status) {
+      alert("Activity updated successfully");
+    }
+    // }
+    console.log(formData.assignedTo);
     await fetchActivity(); // Refresh the members list after adding
   };
+
+  const fetchmembers = async () => {
+    const res = await axios({
+      method: "GET",
+      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
+      // Important: include credentials
+    });
+    const members = res.data.data.data;
+    console.log(members);
+
+    setallusers(members);
+  };
+
+  useEffect(() => fetchmembers, []);
   return (
     <div
       className="modal fade"
@@ -61,14 +85,20 @@ function Updateactivity({
           <div className="modal-body">
             <form>
               <label htmlFor="firstName">Assigned To :</label>
-              <input
-                type="text"
+              <select
                 id="firstName"
-                name="assignedTo"
-                value={formData.assignTo}
+                name="LinkID"
+                value={formData.LinkID}
                 onChange={handleChange}
                 required
-              />
+              >
+                <option value="">Select a user</option>
+                {allusers.map((user) => (
+                  <option key={user._id} value={user._id}>
+                    {user.firstName} {user.lastName}
+                  </option>
+                ))}
+              </select>
               <label htmlFor="lastName">Date Activity:</label>
               <input
                 type="date"
@@ -88,31 +118,28 @@ function Updateactivity({
                 required
               />
               <label htmlFor="email">Activity Description:</label>
-              <input
-                type="text"
+              <textarea
                 id="email"
                 name="activityDescription"
                 value={formData.activityDescription}
                 onChange={handleChange}
                 required
               />
-              <label htmlFor="password">Notes:</label>
-              <input
-                type="text"
+              <label htmlFor="notes">Notes:</label>
+              <textarea
                 id="password"
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
                 required
               />
-              <label htmlFor="password">Reason :</label>
-              <input
+              <label htmlFor="reason">Reason :</label>
+              <textarea
                 type="text"
                 id="password"
                 name="reason"
                 value={formData.reason}
                 onChange={handleChange}
-                required
               />
             </form>
           </div>

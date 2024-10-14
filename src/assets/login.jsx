@@ -75,7 +75,7 @@ function Login({ setuser }) {
               className="pl-2 w-full focus:outline-none formbox"
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
-              style={{ color: "white", fontSize: "16px" }}
+              style={{ color: "white", fontSize: "16px", cursor: "auto" }}
             />
           </div>
           <div className="flex items-center border-b-2 border-blue-200 pb-2">
@@ -94,7 +94,7 @@ function Login({ setuser }) {
               className="pl-2 w-full focus:outline-none formbox"
               value={password}
               onChange={(evt) => setPassword(evt.target.value)}
-              style={{ color: "white", fontSize: "16px" }}
+              style={{ color: "white", fontSize: "16px", cursor: "auto" }}
             />
           </div>
           <div className="flex justify-between items-center">

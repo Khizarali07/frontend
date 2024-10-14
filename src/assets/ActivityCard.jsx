@@ -11,7 +11,21 @@ function ActivityCard({
   id,
   dateFollowUp,
   fetchActivity,
+  linkID,
 }) {
+  const formatDate = (dateString) => {
+    if (dateString) {
+      const dateObject = new Date(dateString);
+      const year = dateObject.getFullYear();
+      const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+      const day = String(dateObject.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div
       className="card container text-center my-3"
@@ -30,6 +44,7 @@ function ActivityCard({
           className="me-3 bg-white"
           data-bs-toggle="modal"
           data-bs-target={`#exampleModal-${id}`}
+          style={{ border: "none" }}
         >
           <i
             className="fa-solid fa-pen-to-square text-dark"
@@ -45,6 +60,7 @@ function ActivityCard({
           dateFollowUp={dateFollowUp}
           reason={reason}
           id={id}
+          linkID={linkID}
           fetchActivity={fetchActivity}
         />
 
@@ -53,6 +69,7 @@ function ActivityCard({
           className="bg-white"
           data-bs-toggle="modal"
           data-bs-target={`#modal-delete-${id}`}
+          style={{ border: "none" }}
         >
           <i
             className="fa-solid fa-trash text-dark"
@@ -64,15 +81,15 @@ function ActivityCard({
 
         <p>
           <strong>Created date : </strong>
-          {dateCreated}
+          {formatDate(dateCreated)}
         </p>
         <p>
           <strong>Last Date : </strong>
-          {dateActivity}
+          {formatDate(dateActivity)}
         </p>
         <p>
           <strong>Follow Up : </strong>
-          {dateFollowUp}
+          {formatDate(dateFollowUp)}
         </p>
       </div>
     </div>

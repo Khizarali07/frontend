@@ -8,6 +8,10 @@ function Deletemember({ id, fetchMembers }) {
       // Important: include credentials
     });
 
+    if (res.data.status) {
+      alert("Member deleted successfully");
+    }
+
     fetchMembers();
   };
   return (

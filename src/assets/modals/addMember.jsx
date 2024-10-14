@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function AddMember({ fetchM }) {
   const [formData, setFormData] = useState({
@@ -8,6 +8,9 @@ export default function AddMember({ fetchM }) {
     email: "",
     password: "",
   });
+  const formRef = useRef(null);
+
+  let res = "";
 
   const handleChange = (e) => {
     setFormData({
@@ -17,18 +20,23 @@ export default function AddMember({ fetchM }) {
   };
 
   const handleSubmit = async () => {
-    try {
-      const res = await axios({
-        method: "POST",
-        url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
-        data: { formData },
-        // Important: include credentials
-      });
+    if (formRef.current.checkValidity()) {
+      try {
+        setTimeout(fetchM, 2000);
+        res = await axios({
+          method: "POST",
+          url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
+          data: { formData },
+          // Important: include credentials
+        });
 
-      await fetchM();
-      // Refresh the members list after adding
-    } catch (error) {
-      console.error("Error adding member:", error);
+        // Refresh the members list after adding
+      } catch (error) {
+        alert(`Error adding member: ${error.response.data.message}`);
+      }
+    } else {
+      // If the form is invalid, show validation error messages
+      formRef.current.reportValidity();
     }
   };
 
@@ -55,7 +63,7 @@ export default function AddMember({ fetchM }) {
           </div>
           {/* Modal body */}
           <div className="modal-body">
-            <form>
+            <form ref={formRef}>
               <label htmlFor="firstName">First Name:</label>
               <input
                 type="text"
@@ -107,7 +115,6 @@ export default function AddMember({ fetchM }) {
               type="button"
               className="btn btn-primary"
               onClick={handleSubmit}
-              data-bs-dismiss="modal"
             >
               Save changes
             </button>

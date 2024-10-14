@@ -8,6 +8,10 @@ function Deleteactivity({ id, fetchActivity }) {
       // Important: include credentials
     });
 
+    if (res.data.status) {
+      alert("Activity deleted successfully");
+    }
+
     fetchActivity();
   };
   return (

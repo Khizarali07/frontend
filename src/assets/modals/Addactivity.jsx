@@ -1,15 +1,17 @@
 import axios from "axios";
-import { useState } from "react";
-import Cookies from "js-cookie";
+import { useEffect, useRef, useState } from "react";
 
 export default function AddActivity({ fetch }) {
   const [formData, setFormData] = useState({
-    assignedTo: "",
+    LinkID: "",
     dateActivity: "",
     activityDescription: "",
     notes: "",
     reason: "",
   });
+
+  const formRef = useRef(null); // Reference for the form
+  const [allusers, setallusers] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,20 +21,51 @@ export default function AddActivity({ fetch }) {
   };
 
   const handleSubmit = async () => {
-    try {
-      const cookieValue = Cookies.get("jwt");
+    if (formRef.current.checkValidity()) {
+      try {
+        console.log(formData);
+        if (formData.LinkID === "") {
+          alert("Please select an assignee");
+        } else {
+          await axios({
+            method: "POST",
+            url: `https://backend-production-e5ac.up.railway.app/api/v1/users/createactivity`,
+            data: { formData },
+            // Important: include credentials
+          });
+        }
 
-      await axios({
-        method: "POST",
-        url: `https://backend-production-e5ac.up.railway.app/api/v1/users/createactivity/${cookieValue}`,
-        data: { formData },
-        // Important: include credentials
-      });
-      await fetch();
-    } catch (error) {
-      console.error("Error adding member:", error);
+        setFormData({
+          LinkID: "",
+          dateActivity: "",
+          activityDescription: "",
+          notes: "",
+          reason: "",
+        });
+
+        alert("activity added successfully");
+        await fetch();
+      } catch (error) {
+        console.error("Error adding member:", error);
+      }
+    } else {
+      // If the form is invalid, show validation error messages
+      formRef.current.reportValidity();
     }
   };
+
+  const fetchmembers = async () => {
+    const res = await axios({
+      method: "GET",
+      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
+      // Important: include credentials
+    });
+    const members = res.data.data.data;
+
+    setallusers(members);
+  };
+
+  useEffect(() => fetchmembers, []);
 
   return (
     <div
@@ -57,16 +90,22 @@ export default function AddActivity({ fetch }) {
           </div>
 
           <div className="modal-body">
-            <form>
+            <form ref={formRef}>
               <label htmlFor="firstName">Assigned To :</label>
-              <input
-                type="text"
+              <select
                 id="firstName"
-                name="assignedTo"
-                value={formData.assignedTo}
+                name="LinkID"
+                value={formData.LinkID}
                 onChange={handleChange}
                 required
-              />
+              >
+                <option value="nothing">Select assignee</option>
+                {allusers.map((user) => (
+                  <option key={user._id} value={user._id}>
+                    {user.firstName} {user.lastName}
+                  </option>
+                ))}
+              </select>
               <label htmlFor="lastName">Date Activity:</label>
               <input
                 type="date"
@@ -78,8 +117,7 @@ export default function AddActivity({ fetch }) {
               />
 
               <label htmlFor="email">Activity Description:</label>
-              <input
-                type="text"
+              <textarea
                 id="email"
                 name="activityDescription"
                 value={formData.activityDescription}
@@ -87,8 +125,7 @@ export default function AddActivity({ fetch }) {
                 required
               />
               <label htmlFor="password">Notes:</label>
-              <input
-                type="text"
+              <textarea
                 id="password"
                 name="notes"
                 value={formData.notes}
@@ -96,8 +133,7 @@ export default function AddActivity({ fetch }) {
                 required
               />
               <label htmlFor="password">Reason :</label>
-              <input
-                type="text"
+              <textarea
                 id="password"
                 name="reason"
                 value={formData.reason}
@@ -119,7 +155,7 @@ export default function AddActivity({ fetch }) {
               type="button"
               className="btn btn-primary"
               onClick={handleSubmit}
-              data-bs-dismiss="modal"
+              // data-bs-dismiss="modal"
             >
               Save changes
             </button>

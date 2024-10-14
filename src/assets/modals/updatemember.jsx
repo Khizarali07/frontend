@@ -32,6 +32,10 @@ function Updatemember({
       // Important: include credentials
     });
 
+    if (res.data.status) {
+      alert("Member updated successfully");
+    }
+
     fetchMembers();
   };
   return (
