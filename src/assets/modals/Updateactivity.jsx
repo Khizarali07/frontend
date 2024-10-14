@@ -31,7 +31,6 @@ function Updateactivity({
     });
   };
   const handleSubmit = async () => {
-    // if (!formData.LinkID === "") {
     const res = await axios({
       method: "POST",
       url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateactivity/${id}`,
@@ -59,7 +58,7 @@ function Updateactivity({
     setallusers(members);
   };
 
-  useEffect(() => fetchmembers, []);
+  useEffect(() => fetchmembers(), []);
   return (
     <div
       className="modal fade"
