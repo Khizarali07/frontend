@@ -11,6 +11,7 @@ export default function AddActivity({ fetch }) {
   });
 
   const formRef = useRef(null); // Reference for the form
+  const modalRef = useRef(null); // Reference for the modal
   const [allusers, setallusers] = useState([]);
 
   const handleChange = (e) => {
@@ -45,6 +46,9 @@ export default function AddActivity({ fetch }) {
 
         alert("activity added successfully");
         await fetch();
+
+        const modalInstance = new window.bootstrap.Modal(modalRef.current);
+        modalInstance.hide();
       } catch (error) {
         console.error("Error adding member:", error);
       }
@@ -78,6 +82,7 @@ export default function AddActivity({ fetch }) {
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      ref={modalRef}
     >
       <div className="modal-dialog">
         <div className="modal-content">
@@ -159,7 +164,6 @@ export default function AddActivity({ fetch }) {
               type="button"
               className="btn btn-primary"
               onClick={handleSubmit}
-              // data-bs-dismiss="modal"
             >
               Save changes
             </button>
