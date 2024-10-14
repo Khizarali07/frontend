@@ -68,6 +68,7 @@ function Updatemember({
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="lastName">Last Name:</label>
@@ -77,6 +78,7 @@ function Updatemember({
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="email">Email:</label>
@@ -86,6 +88,7 @@ function Updatemember({
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="email">Status :</label>
@@ -93,7 +96,6 @@ function Updatemember({
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
-                className=""
               >
                 <option value="Active">Active</option>
                 <option value="Less Active">Less Active</option>

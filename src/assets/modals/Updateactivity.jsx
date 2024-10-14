@@ -89,6 +89,7 @@ function Updateactivity({
                 name="LinkID"
                 value={formData.LinkID}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               >
                 <option value="">Select a user</option>
@@ -122,6 +123,7 @@ function Updateactivity({
                 name="activityDescription"
                 value={formData.activityDescription}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="notes">Notes:</label>
@@ -130,6 +132,7 @@ function Updateactivity({
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="reason">Reason :</label>
@@ -139,6 +142,7 @@ function Updateactivity({
                 name="reason"
                 value={formData.reason}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
               />
             </form>
           </div>

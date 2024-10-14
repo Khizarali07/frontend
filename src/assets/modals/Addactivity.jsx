@@ -102,6 +102,7 @@ export default function AddActivity({ fetch }) {
                 name="LinkID"
                 value={formData.LinkID}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               >
                 <option value="nothing">Select assignee</option>
@@ -127,6 +128,7 @@ export default function AddActivity({ fetch }) {
                 name="activityDescription"
                 value={formData.activityDescription}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="password">Notes:</label>
@@ -135,6 +137,7 @@ export default function AddActivity({ fetch }) {
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
               <label htmlFor="password">Reason :</label>
@@ -143,6 +146,7 @@ export default function AddActivity({ fetch }) {
                 name="reason"
                 value={formData.reason}
                 onChange={handleChange}
+                style={{ cursor: "auto" }}
                 required
               />
             </form>
