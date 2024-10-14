@@ -69,7 +69,7 @@ export default function AddActivity({ fetch }) {
     }
   };
 
-  useEffect(() => fetchmembers, []);
+  useEffect(() => fetchmembers(), []);
 
   return (
     <div
