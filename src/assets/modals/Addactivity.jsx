@@ -33,6 +33,7 @@ export default function AddActivity({ fetch }) {
             data: { formData },
             // Important: include credentials
           });
+          alert("activity added successfully");
         }
 
         setFormData({
@@ -43,7 +44,6 @@ export default function AddActivity({ fetch }) {
           reason: "",
         });
 
-        alert("activity added successfully");
         await fetch();
         window.$("#exampleModal").modal("hide");
       } catch (error) {
