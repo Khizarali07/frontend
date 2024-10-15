@@ -5,17 +5,29 @@ function Updatemember({
   firstName,
   lastName,
   email,
-  status,
+  status = "",
   id,
   fetchMembers,
   role,
 }) {
-  const [formData, setFormData] = useState({
-    firstName,
-    lastName,
-    email,
-    status,
-  });
+  const initializeFormData = (role) => {
+    if (role === "Manager") {
+      return {
+        firstName,
+        lastName,
+        email,
+      }; // No status field for Manager
+    } else if (role === "Member") {
+      return {
+        firstName,
+        lastName,
+        status, // Include status for Member
+      };
+    }
+    return {};
+  };
+
+  const [formData, setFormData] = useState(initializeFormData(role));
 
   const handleChange = (e) => {
     setFormData({
@@ -26,15 +38,28 @@ function Updatemember({
 
   const handleSubmit = async () => {
     // Handle form submission here, e.g., send data to
-    const res = await axios({
-      method: "POST",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateuser/${id}`,
-      data: { formData },
-      // Important: include credentials
-    });
+    if (role === "Manager") {
+      const res = await axios({
+        method: "POST",
+        url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateuser/${id}`,
+        data: { formData },
+        // Important: include credentials
+      });
 
-    if (res.data.status) {
-      alert("Member updated successfully");
+      if (res.data.status) {
+        alert("updated successfully");
+      }
+    } else {
+      const res = await axios({
+        method: "POST",
+        url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updatemember/${id}`,
+        data: { formData },
+        // Important: include credentials
+      });
+
+      if (res.data.status) {
+        alert("updated successfully");
+      }
     }
 
     fetchMembers();
@@ -82,16 +107,22 @@ function Updatemember({
                 style={{ cursor: "auto" }}
                 required
               />
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                style={{ cursor: "auto" }}
-                required
-              />
+              {role === "Manager" ? (
+                <>
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    style={{ cursor: "auto" }}
+                    required
+                  />
+                </>
+              ) : (
+                ""
+              )}
               {role === "Member" ? (
                 <>
                   <label htmlFor="email">Status :</label>

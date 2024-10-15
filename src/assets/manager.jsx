@@ -54,8 +54,6 @@ function Members({ user }) {
       console.log(sorteditems);
     }
   };
-
-  //   const handledate = async () => {
   //     if (sortbydate === "default") {
   //       const res = await axios({
   //         method: "GET",
@@ -153,7 +151,6 @@ function Members({ user }) {
               lastName={member.lastName}
               date={member.datecreated}
               image={member.photo}
-              status={member.status}
               email={member.email}
               id={member._id}
               check="Manager"

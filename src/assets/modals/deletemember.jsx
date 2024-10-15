@@ -1,15 +1,27 @@
 import axios from "axios";
 
-function Deletemember({ id, fetchMembers }) {
+function Deletemember({ id, fetchMembers, role }) {
   const handlesubmit = async () => {
-    const res = await axios({
-      method: "GET",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/delete/${id}`,
-      // Important: include credentials
-    });
+    if (role === "Manager") {
+      const res = await axios({
+        method: "GET",
+        url: `https://backend-production-e5ac.up.railway.app/api/v1/users/delete/${id}`,
+        // Important: include credentials
+      });
 
-    if (res.data.status) {
-      alert("Member deleted successfully");
+      if (res.data.status) {
+        alert("deleted successfully");
+      }
+    } else {
+      const res = await axios({
+        method: "GET",
+        url: `https://backend-production-e5ac.up.railway.app/api/v1/users/deletemember/${id}`,
+        // Important: include credentials
+      });
+
+      if (res.data.status) {
+        alert("deleted successfully");
+      }
     }
 
     fetchMembers();
@@ -36,7 +48,7 @@ function Deletemember({ id, fetchMembers }) {
             ></button>
           </div>
           <div className="modal-body">
-            Do you really want to delete this member ?
+            Do you really want to delete this Person ?
           </div>
           <div className="modal-footer">
             <button

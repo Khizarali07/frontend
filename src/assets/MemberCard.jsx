@@ -8,7 +8,7 @@ function MemberCard({
   lastName,
   date,
   image,
-  status,
+  status = "",
   id,
   email,
   fetchMembers,
@@ -66,7 +66,7 @@ function MemberCard({
           ></i>
         </button>
 
-        <Deletemember id={id} fetchMembers={fetchMembers} />
+        <Deletemember role={check} id={id} fetchMembers={fetchMembers} />
 
         {check === "Member" ? (
           <div>

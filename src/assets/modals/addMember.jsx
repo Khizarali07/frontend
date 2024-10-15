@@ -2,13 +2,23 @@ import axios from "axios";
 import { useRef, useState } from "react";
 
 export default function AddMember({ fetchM, role }) {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    role,
-  });
+  const initializeFormData = (role) => {
+    if (role === "Manager") {
+      return {
+        firstName: "",
+        lastName: "",
+        email: "",
+      }; // No status field for Manager
+    } else if (role === "Member") {
+      return {
+        firstName: "",
+        lastName: "",
+      };
+    }
+    return {};
+  };
+
+  const [formData, setFormData] = useState(initializeFormData(role));
   const formRef = useRef(null);
 
   let res = "";
@@ -25,24 +35,46 @@ export default function AddMember({ fetchM, role }) {
   };
 
   const handleSubmit = async () => {
-    if (formRef.current.checkValidity()) {
-      try {
-        setTimeout(fetchM, 2000);
-        setTimeout(hide, 2000);
-        res = await axios({
-          method: "POST",
-          url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
-          data: { formData },
-          // Important: include credentials
-        });
+    if (role === "Manager") {
+      if (formRef.current.checkValidity()) {
+        try {
+          setTimeout(fetchM, 2000);
+          setTimeout(hide, 2000);
+          res = await axios({
+            method: "POST",
+            url: "https://backend-production-e5ac.up.railway.app/api/v1/users/signup",
+            data: { formData },
+            // Important: include credentials
+          });
 
-        // Refresh the members list after adding
-      } catch (error) {
-        alert(`Error adding member: ${error.response.data.message}`);
+          // Refresh the members list after adding
+        } catch (error) {
+          alert(`Error adding member: ${error.response.data.message}`);
+        }
+      } else {
+        // If the form is invalid, show validation error messages
+        formRef.current.reportValidity();
       }
     } else {
-      // If the form is invalid, show validation error messages
-      formRef.current.reportValidity();
+      if (formRef.current.checkValidity()) {
+        try {
+          setTimeout(fetchM, 2000);
+          setTimeout(hide, 2000);
+          res = await axios({
+            method: "POST",
+            url: "https://backend-production-e5ac.up.railway.app/api/v1/users/createmember",
+            data: { formData },
+            // Important: include credentials
+          });
+
+          // Refresh the members list after adding
+        } catch (error) {
+          alert(`Error adding member: ${error.response.data.message}`);
+        }
+      } else {
+        // If the form is invalid, show validation error messages
+        formRef.current.reportValidity();
+      }
     }
   };
 
@@ -90,26 +122,32 @@ export default function AddMember({ fetchM, role }) {
                 style={{ cursor: "auto" }}
                 required
               />
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                style={{ cursor: "auto" }}
-                required
-              />
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                style={{ cursor: "auto" }}
-                required
-              />
+              {role === "Manager" ? (
+                <>
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    style={{ cursor: "auto" }}
+                    required
+                  />
+                  <label htmlFor="password">Password:</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    style={{ cursor: "auto" }}
+                    required
+                  />
+                </>
+              ) : (
+                ""
+              )}
             </form>
           </div>
           {/* Modal footer */}
