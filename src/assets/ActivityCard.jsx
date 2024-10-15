@@ -51,6 +51,7 @@ function ActivityCard({
 
   useEffect(() => {
     fetchnames();
+    console.log(linkmember, assignmanager);
   }, []);
 
   return (
