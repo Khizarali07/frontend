@@ -1,15 +1,24 @@
+import { useEffect } from "react";
 import "./index.css";
 import AddMember from "./modals/addMember.jsx";
+import Cookies from "js-cookie";
 
 function ChildNavbar({
   sortbyname,
   setsortbyName,
   sortbydate,
   setsortbyDate,
-  status,
-  setStatus,
+  status = "",
+  setStatus = async () => {},
   fetchM,
+  check,
 }) {
+  let userRole = "";
+
+  useEffect(() => {
+    userRole = Cookies.get("userRole");
+  }, []);
+
   return (
     <>
       <nav
@@ -47,25 +56,29 @@ function ChildNavbar({
               </option>
             </select>
 
-            <select
-              value={status}
-              onChange={(evt) => setStatus(evt.target.value)}
-              className="actions"
-            >
-              <option value="ALL">ALL</option>
-              <option value="active">Active Members</option>
-              <option value="less_active">Less Active Members</option>
-              <option value="do_not_contact">Do Not Contact</option>
-            </select>
+            {check === "Member" ? (
+              <select
+                value={status}
+                onChange={(evt) => setStatus(evt.target.value)}
+                className="actions"
+              >
+                <option value="ALL">ALL</option>
+                <option value="active">Active Members</option>
+                <option value="less_active">Less Active Members</option>
+                <option value="do_not_contact">Do Not Contact</option>
+              </select>
+            ) : (
+              ""
+            )}
             <button
               type="button"
               className="btn btn-primary action"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              Add Member
+              {check === "Manager" ? "Add Manager" : "Add Member"}
             </button>
-            <AddMember fetchM={fetchM} />
+            <AddMember fetchM={fetchM} role={check} />
           </div>
         </div>
       </nav>

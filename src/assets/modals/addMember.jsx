@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 
-export default function AddMember({ fetchM }) {
+export default function AddMember({ fetchM, role }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
+    role,
   });
   const formRef = useRef(null);
 
@@ -57,7 +58,7 @@ export default function AddMember({ fetchM }) {
         <div className="modal-content">
           <div className="modal-header">
             <h2 className="modal-title fs-5" id="exampleModalLabel">
-              Add New Activity
+              {role === "Manager" ? "Add New Manager" : "Add New Member"}
             </h2>
             <button
               type="button"

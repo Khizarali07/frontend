@@ -192,6 +192,7 @@ function Members({ user }) {
         status={status}
         setStatus={setStatus}
         fetchM={fetchMembers}
+        check="Member"
       />
       <div className="row">
         {sorteditems.map((member) => (
@@ -212,6 +213,7 @@ function Members({ user }) {
               status={member.status}
               email={member.email}
               id={member._id}
+              check="Member"
               fetchMembers={fetchMembers}
             />
           </div>

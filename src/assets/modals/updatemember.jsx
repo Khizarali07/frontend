@@ -8,6 +8,7 @@ function Updatemember({
   status,
   id,
   fetchMembers,
+  role,
 }) {
   const [formData, setFormData] = useState({
     firstName,
@@ -91,16 +92,22 @@ function Updatemember({
                 style={{ cursor: "auto" }}
                 required
               />
-              <label htmlFor="email">Status :</label>
-              <select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-              >
-                <option value="Active">Active</option>
-                <option value="Less Active">Less Active</option>
-                <option value="Do Not Contact">Don Not Contact</option>
-              </select>
+              {role === "Member" ? (
+                <>
+                  <label htmlFor="email">Status :</label>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Less Active">Less Active</option>
+                    <option value="Do Not Contact">Don Not Contact</option>
+                  </select>
+                </>
+              ) : (
+                ""
+              )}
             </form>
           </div>
           <div className="modal-footer">

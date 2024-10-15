@@ -12,6 +12,7 @@ function MemberCard({
   id,
   email,
   fetchMembers,
+  check,
 }) {
   const formatDate = (dateString) => {
     const dateObject = new Date(dateString);
@@ -49,6 +50,7 @@ function MemberCard({
           status={status}
           id={id}
           fetchMembers={fetchMembers}
+          role={check}
         />
 
         <button
@@ -65,10 +67,15 @@ function MemberCard({
         </button>
 
         <Deletemember id={id} fetchMembers={fetchMembers} />
-        <div>
-          <b>Status : </b>
-          {status}
-        </div>
+
+        {check === "Member" ? (
+          <div>
+            <b>Status : </b>
+            {status}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="card-footer text-muted">{formatDate(date)}</div>
     </div>
