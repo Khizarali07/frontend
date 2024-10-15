@@ -57,8 +57,11 @@ function ActivityCard({
 
   return (
     <div
-      className="card container text-center my-3"
-      style={{ height: "330px" }}
+      className="card text-center my-3"
+      style={{
+        height: "330px",
+        boxShadow: "10px 10px 5px #aaaaaa",
+      }}
     >
       <div className="card-body">
         <p className="card-title" style={{ fontSize: "15px" }}>

@@ -17,7 +17,8 @@ function Members({ user }) {
   const [m, setM] = useState([]);
   const [sortbyname, setsortbyName] = useState("default");
   const [sortbydate, setsortbyDate] = useState("default");
-  const [status, setStatus] = useState("ALL");
+  const [status, setStatus] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); // Search query state
 
   const fetchMembers = async () => {
     const cookieValue = Cookies.get("jwt");
@@ -169,6 +170,16 @@ function Members({ user }) {
     }
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const filteredMembers = m.filter(
+      (member) =>
+        member.firstName.toLowerCase().includes(query.toLowerCase()) ||
+        member.lastName.toLowerCase().includes(query.toLowerCase())
+    );
+    setsorteditems(filteredMembers);
+  };
+
   useEffect(() => {
     handledate();
   }, [sortbydate, status]);
@@ -193,7 +204,12 @@ function Members({ user }) {
         setStatus={setStatus}
         fetchM={fetchMembers}
         check="Member"
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
       />
+
+      {/* Search bar */}
+
       <div className="row">
         {sorteditems.map((member) => (
           <div

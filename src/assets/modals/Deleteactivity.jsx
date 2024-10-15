@@ -37,7 +37,7 @@ function Deleteactivity({ id, fetchActivity }) {
             ></button>
           </div>
           <div className="modal-body">
-            Do you really want to delete this member ?
+            Do you really want to delete this activity ?
           </div>
           <div className="modal-footer">
             <button

@@ -30,7 +30,7 @@ function ActivityNavbar({
               onChange={(evt) => setsortbyName(evt.target.value)}
               className="actions"
             >
-              <option value="default">Default</option>
+              <option value="default">Sort by Name</option>
               <option value="assending">Sort by Ascending Order</option>
               <option value="desending">Sort by Descending Order</option>
             </select>
@@ -40,7 +40,7 @@ function ActivityNavbar({
               onChange={(evt) => setsortbyDateC(evt.target.value)}
               className="actions"
             >
-              <option value="default">Default</option>
+              <option value="default">Sort by Date Created</option>
               <option value="asc">Sort by Date Created (Asc)</option>
               <option value="desc">Sort by Date Created (Desc)</option>
             </select>
@@ -50,7 +50,7 @@ function ActivityNavbar({
               onChange={(evt) => setsortbyDateE(evt.target.value)}
               className="actions"
             >
-              <option value="default">Default</option>
+              <option value="default">Sort b Last Date</option>
               <option value="asc">Sort b Last Date (Asc)</option>
               <option value="desc">Sort by Last Date (Desc)</option>
             </select>
@@ -60,7 +60,7 @@ function ActivityNavbar({
               onChange={(evt) => setsortbyDateF(evt.target.value)}
               className="actions color"
             >
-              <option value="default">Default</option>
+              <option value="default">Sort by Follow-Up Date</option>
               <option value="asc">Sort by Follow-Up Date (Asc)</option>
               <option value="desc">Sort by Follow-Up Date (Desc)</option>
             </select>

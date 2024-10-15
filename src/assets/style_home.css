@@ -10,9 +10,6 @@ body {
 main {
   display: block;
 }
-.card {
-  box-shadow: 10px 10px 5px lightblue;
-}
 
 h1 {
   font-size: 2em;

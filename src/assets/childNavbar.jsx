@@ -12,6 +12,8 @@ function ChildNavbar({
   setStatus = async () => {},
   fetchM,
   check,
+  searchQuery = "",
+  handleSearch = () => {},
 }) {
   let userRole = "";
 
@@ -37,7 +39,7 @@ function ChildNavbar({
               onChange={(evt) => setsortbyName(evt.target.value)}
               className="actions"
             >
-              <option value="default">Default</option>
+              <option value="default">Sort by Name</option>
               <option value="assending">Sort by Ascending Order</option>
               <option value="desending">Sort by Descending Order</option>
             </select>
@@ -47,7 +49,7 @@ function ChildNavbar({
               onChange={(evt) => setsortbyDate(evt.target.value)}
               className="actions"
             >
-              <option value="default">Default</option>
+              <option value="default">Sort by Date</option>
               <option value="assending_d">
                 Sort by Date (Ascending Order)
               </option>
@@ -57,31 +59,52 @@ function ChildNavbar({
             </select>
 
             {check === "Member" ? (
-              <select
-                value={status}
-                onChange={(evt) => setStatus(evt.target.value)}
-                className="actions"
-              >
-                <option value="ALL">ALL</option>
-                <option value="active">Active Members</option>
-                <option value="less_active">Less Active Members</option>
-                <option value="do_not_contact">Do Not Contact</option>
-              </select>
+              <>
+                <select
+                  value={status}
+                  onChange={(evt) => setStatus(evt.target.value)}
+                  className="actions"
+                >
+                  <option>Sort by Status</option>
+                  <option value="ALL">ALL</option>
+                  <option value="active">Active Members</option>
+                  <option value="less_active">Less Active Members</option>
+                  <option value="do_not_contact">Do Not Contact</option>
+                </select>
+              </>
             ) : (
               ""
             )}
-            <button
-              type="button"
-              className="btn btn-primary action"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              {check === "Manager" ? "Add Manager" : "Add Member"}
-            </button>
-            <AddMember fetchM={fetchM} role={check} />
           </div>
         </div>
       </nav>
+      <div
+        className="search-bar bg-primary"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <input
+          className="actions mb-2 ms-4"
+          type="text"
+          placeholder="Search by name"
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
+          style={{
+            width: "430px",
+            padding: "10px",
+            color: "white",
+            ".action::placeholder": { color: "black" },
+          }}
+        />
+        <button
+          type="button"
+          className="btn btn-primary action mb-2 me-4"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          {check === "Manager" ? "Add Manager" : "Add Member"}
+        </button>
+        <AddMember fetchM={fetchM} role={check} />
+      </div>
     </>
   );
 }

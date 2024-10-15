@@ -25,7 +25,10 @@ function MemberCard({
   };
 
   return (
-    <div className="card text-center mt-4" style={{ width: "40rem" }}>
+    <div
+      className="card container text-center mt-4"
+      style={{ width: "40rem", boxShadow: "10px 10px 5px #aaaaaa" }}
+    >
       <div className="card-header d-flex justify-content-center">
         <img src={image} alt="profile-image" />
       </div>
