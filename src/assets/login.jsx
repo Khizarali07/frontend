@@ -33,10 +33,17 @@ function Login({ setuser }) {
     console.log(res);
 
     if (res.data.status == "success") {
-      setuser(res.data.data.user.role);
-      Cookies.set("jwt", res.data.token, { expires: 100 });
-      Cookies.set("userRole", res.data.data.user.role, { expires: 100 });
-      navigate("/");
+      if (
+        res.data.data.user.role === "Admin" ||
+        res.data.data.user.role === "Manager"
+      ) {
+        setuser(res.data.data.user.role);
+        Cookies.set("jwt", res.data.token, { expires: 100 });
+        Cookies.set("userRole", res.data.data.user.role, { expires: 100 });
+        navigate("/");
+      } else if (res.data.data.user.role === "Member") {
+        alert("Unauthorized access. Please contact your admin.");
+      }
     } else if (res.data.message === "Invalid email or password") {
       alert(res.data.message);
     }
