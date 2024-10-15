@@ -41,9 +41,6 @@ function ActivityCard({
 
     setlinkmember(members.find((member) => member._id === linkID));
     setassignmanager(members.find((member) => member._id === assignTo));
-
-    console.log(linkmember);
-    console.log(assignmanager);
   };
 
   useEffect(() => fetchnames(), []);
@@ -56,11 +53,11 @@ function ActivityCard({
       <div className="card-body">
         <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Link To : </b>
-          {` ${linkID}`}
+          {` ${linkmember.firstName} ${linkmember.lastName}`}
         </p>
         <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Assign To : </b>
-          {` ${assignTo}`}
+          {` ${assignmanager.firstName} ${assignmanager.lastName}`}
         </p>
 
         <h6 className="card-subtitle my-3 text-body-secondary">
