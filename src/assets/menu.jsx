@@ -30,14 +30,15 @@ export default function Menu({ user }) {
               ) : (
                 ""
               )}
-
-              <Link to="/members" className="ga-dataset user-logout ms-1">
-                <i
-                  className="fa-solid fa-user me-3 text-white"
-                  style={{ fontSize: "20px", overflowY: "hidden" }}
-                ></i>
-                Members
-              </Link>
+              <div onClick={() => window.location.reload()}>
+                <Link to="/members" className="ga-dataset user-logout ms-1">
+                  <i
+                    className="fa-solid fa-user me-3 text-white"
+                    style={{ fontSize: "20px", overflowY: "hidden" }}
+                  ></i>
+                  Members
+                </Link>
+              </div>
 
               <Link
                 to="/"
