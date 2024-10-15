@@ -44,7 +44,7 @@ function ActivityCard({
 
   useEffect(() => {
     fetchnames();
-  }, []);
+  }, [linkID, assignTo]);
 
   return (
     <div

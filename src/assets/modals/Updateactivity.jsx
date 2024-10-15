@@ -47,7 +47,7 @@ function Updateactivity({
     // }
     console.log(formData.assignedTo);
     await fetchActivity(); // Refresh the members list after adding
-    await fetchnames();
+    // await fetchnames();
   };
 
   const fetchmembers = async () => {
