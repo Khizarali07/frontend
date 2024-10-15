@@ -15,6 +15,7 @@ function Updateactivity({
 }) {
   const [formData, setFormData] = useState({
     LinkID,
+    assignedTo: assignTo,
     dateActivity,
     dateFollowUp,
     activityDescription,
@@ -23,6 +24,7 @@ function Updateactivity({
   });
 
   const [allusers, setallusers] = useState([]);
+  const [allmanager, setallmanager] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -58,7 +60,22 @@ function Updateactivity({
     setallusers(members);
   };
 
-  useEffect(() => fetchmembers(), []);
+  const fetchmanagers = async () => {
+    const res = await axios({
+      method: "GET",
+      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getmanagers",
+      // Important: include credentials
+    });
+    const members = res.data.data.data;
+    console.log(members);
+
+    setallmanager(members);
+  };
+
+  useEffect(() => {
+    fetchmembers();
+    fetchmanagers();
+  }, []);
   return (
     <div
       className="modal fade"
@@ -83,7 +100,7 @@ function Updateactivity({
 
           <div className="modal-body">
             <form>
-              <label htmlFor="firstName">Assigned To :</label>
+              <label htmlFor="firstName">Link To:</label>
               <select
                 id="firstName"
                 name="LinkID"
@@ -92,13 +109,31 @@ function Updateactivity({
                 style={{ cursor: "auto" }}
                 required
               >
-                <option value="">Select a user</option>
+                <option value="nothing">Select assignee</option>
                 {allusers.map((user) => (
                   <option key={user._id} value={user._id}>
                     {user.firstName} {user.lastName}
                   </option>
                 ))}
               </select>
+
+              <label htmlFor="firstName">Assigned To Managers:</label>
+              <select
+                id="firstName"
+                name="assignedTo"
+                value={formData.assignedTo}
+                onChange={handleChange}
+                style={{ cursor: "auto" }}
+                required
+              >
+                <option value="nothing">Select assignee</option>
+                {allmanager.map((user) => (
+                  <option key={user._id} value={user._id}>
+                    {user.firstName} {user.lastName}
+                  </option>
+                ))}
+              </select>
+
               <label htmlFor="lastName">Date Activity:</label>
               <input
                 type="date"
