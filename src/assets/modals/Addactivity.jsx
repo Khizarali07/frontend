@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 export default function AddActivity({ fetch }) {
   const [formData, setFormData] = useState({
     LinkID: "",
+    assignedTo: "",
     dateActivity: "",
     activityDescription: "",
     notes: "",
@@ -12,6 +13,7 @@ export default function AddActivity({ fetch }) {
 
   const formRef = useRef(null); // Reference for the form
   const [allusers, setallusers] = useState([]);
+  const [allmanagers, setallmanagers] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -42,9 +44,8 @@ export default function AddActivity({ fetch }) {
             reason: "",
           });
           window.$("#exampleModal").modal("hide");
+          await fetch();
         }
-
-        await fetch();
       } catch (error) {
         console.error("Error adding member:", error);
       }
@@ -69,7 +70,25 @@ export default function AddActivity({ fetch }) {
     }
   };
 
-  useEffect(() => fetchmembers(), []);
+  const fetchmanagers = async () => {
+    try {
+      const res = await axios({
+        method: "GET",
+        url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getmanagers",
+        // Important: include credentials if needed
+      });
+      const members = res.data.data.data;
+      console.log("Members fetched:", members); // Log the response
+      setallmanagers(members);
+    } catch (error) {
+      console.error("Error fetching members:", error); // Log any errors
+    }
+  };
+
+  useEffect(() => {
+    fetchmembers();
+    fetchmanagers();
+  }, []);
 
   return (
     <div
@@ -95,11 +114,11 @@ export default function AddActivity({ fetch }) {
 
           <div className="modal-body">
             <form ref={formRef}>
-              <label htmlFor="firstName">Assigned To :</label>
+              <label htmlFor="firstName">Link To:</label>
               <select
                 id="firstName"
-                name="LinkID"
-                value={formData.LinkID}
+                name="assignedTo"
+                value={formData.assignedTo}
                 onChange={handleChange}
                 style={{ cursor: "auto" }}
                 required
@@ -111,6 +130,24 @@ export default function AddActivity({ fetch }) {
                   </option>
                 ))}
               </select>
+
+              <label htmlFor="firstName">Assigned To Managers:</label>
+              <select
+                id="firstName"
+                name="LinkID"
+                value={formData.LinkID}
+                onChange={handleChange}
+                style={{ cursor: "auto" }}
+                required
+              >
+                <option value="nothing">Select assignee</option>
+                {allmanagers.map((user) => (
+                  <option key={user._id} value={user._id}>
+                    {user.firstName} {user.lastName}
+                  </option>
+                ))}
+              </select>
+
               <label htmlFor="lastName">Date Activity:</label>
               <input
                 type="date"
