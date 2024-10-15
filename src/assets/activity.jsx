@@ -180,7 +180,7 @@ function Activity({ user }) {
               dateFollowUp={activity.dateFollowUp}
               reason={activity.reason}
               id={activity._id}
-              linkID={activity.linkID}
+              linkID={activity.LinkID}
               fetchActivity={fetchActivity}
             />
           </div>
