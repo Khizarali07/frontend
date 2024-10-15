@@ -2,6 +2,7 @@ import axios from "axios";
 import Deletemember from "./modals/deletemember";
 import { useState } from "react";
 import Updatemember from "./modals/updatemember";
+import CreateActivity from "./modals/createActivity";
 
 function MemberCard({
   firstName,
@@ -31,6 +32,31 @@ function MemberCard({
       <div className="card-body">
         <h5 className="card-title">{`${firstName} ${lastName}`}</h5>
         <p className="card-text"></p>
+
+        {check === "Member" ? (
+          <>
+            <button
+              className="me-3 bg-white"
+              data-bs-toggle="modal"
+              data-bs-target={`#modalactivity-${id}`}
+              style={{ border: "none" }}
+            >
+              <i
+                class="fa-regular fa-address-book text-dark"
+                style={{ fontSize: "20px" }}
+              ></i>
+            </button>
+
+            <CreateActivity
+              LinkID={id}
+              firstName={firstName}
+              lastName={lastName}
+            />
+          </>
+        ) : (
+          ""
+        )}
+
         <button
           className="me-3 bg-white"
           data-bs-toggle="modal"

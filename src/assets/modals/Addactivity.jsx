@@ -26,7 +26,7 @@ export default function AddActivity({ fetch }) {
     if (formRef.current.checkValidity()) {
       try {
         console.log(formData);
-        if (formData.LinkID === "") {
+        if (formData.LinkID === "" || formData.assignedTo === "") {
           alert("Please select an assignee");
         } else {
           await axios({

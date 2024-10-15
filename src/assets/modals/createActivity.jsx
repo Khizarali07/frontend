@@ -1,28 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-function Updateactivity({
-  assignTo,
-  activityDescription,
-  notes,
-  dateActivity,
-  dateFollowUp,
-  reason,
-  id,
-  LinkID,
-  fetchActivity,
-}) {
+function CreateActivity({ LinkID, firstName, lastName }) {
   const [formData, setFormData] = useState({
     LinkID,
-    assignedTo: assignTo,
-    dateActivity,
-    dateFollowUp,
-    activityDescription,
-    notes,
-    reason,
+    assignedTo: "",
+    dateActivity: "",
+    activityDescription: "",
+    notes: "",
+    reason: "",
+    dateFollowUp: "",
   });
 
-  const [allusers, setallusers] = useState([]);
+  const formRef = useRef(null); // Reference for the form
   const [allmanager, setallmanager] = useState([]);
 
   const handleChange = (e) => {
@@ -31,32 +21,41 @@ function Updateactivity({
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async () => {
-    const res = await axios({
-      method: "POST",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/updateactivity/${id}`,
-      data: { formData },
-      // Important: include credentials
-    });
+    if (formRef.current.checkValidity()) {
+      try {
+        console.log(formData);
+        if (formData.assignedTo === "") {
+          alert("Please select an assignee");
+        } else {
+          await axios({
+            method: "POST",
+            url: `https://backend-production-e5ac.up.railway.app/api/v1/users/createactivity`,
+            data: { formData },
+            // Important: include credentials
+          });
+          setFormData({
+            LinkID,
+            assignedTo: "",
+            dateActivity: "",
+            activityDescription: "",
+            notes: "",
+            reason: "",
+            dateFollowUp: "",
+          });
+          const modal = `#modalactivity-${LinkID}`;
+          window.$(modal).modal("hide");
 
-    if (res.data.status) {
-      alert("Activity updated successfully");
+          alert("activity added successfully");
+        }
+      } catch (error) {
+        console.error("Error adding member:", error);
+      }
+    } else {
+      // If the form is invalid, show validation error messages
+      formRef.current.reportValidity();
     }
-    // }
-    console.log(formData.assignedTo);
-    await fetchActivity(); // Refresh the members list after adding
-  };
-
-  const fetchmembers = async () => {
-    const res = await axios({
-      method: "GET",
-      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getusers",
-      // Important: include credentials
-    });
-    const members = res.data.data.data;
-    console.log(members);
-
-    setallusers(members);
   };
 
   const fetchmanagers = async () => {
@@ -72,13 +71,13 @@ function Updateactivity({
   };
 
   useEffect(() => {
-    fetchmembers();
     fetchmanagers();
   }, []);
+
   return (
     <div
       className="modal fade"
-      id={`exampleModal-${id}`}
+      id={`modalactivity-${LinkID}`}
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -98,22 +97,15 @@ function Updateactivity({
           </div>
 
           <div className="modal-body">
-            <form>
+            <form ref={formRef}>
               <label htmlFor="firstName">Link To:</label>
               <select
                 id="firstName"
                 name="LinkID"
                 value={formData.LinkID}
-                onChange={handleChange}
                 style={{ cursor: "auto" }}
-                required
               >
-                <option value="nothing">Select assignee</option>
-                {allusers.map((user) => (
-                  <option key={user._id} value={user._id}>
-                    {user.firstName} {user.lastName}
-                  </option>
-                ))}
+                <option value={LinkID}>{`${firstName} ${lastName}`}</option>
               </select>
 
               <label htmlFor="firstName">Assigned To Managers:</label>
@@ -177,6 +169,7 @@ function Updateactivity({
                 value={formData.reason}
                 onChange={handleChange}
                 style={{ cursor: "auto" }}
+                required
               />
             </form>
           </div>
@@ -193,7 +186,6 @@ function Updateactivity({
               type="button"
               className="btn btn-primary"
               onClick={handleSubmit}
-              data-bs-dismiss="modal"
             >
               Save changes
             </button>
@@ -204,4 +196,4 @@ function Updateactivity({
   );
 }
 
-export default Updateactivity;
+export default CreateActivity;

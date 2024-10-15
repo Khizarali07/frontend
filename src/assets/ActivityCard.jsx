@@ -63,13 +63,13 @@ function ActivityCard({
       <div className="card-body">
         <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Link To : </b>
-          {linkmember.firstName
+          {linkmember?.firstName
             ? ` ${linkmember?.firstName} ${linkmember?.lastName}`
             : ""}
         </p>
         <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Assign To : </b>
-          {assignmanager.firstName
+          {assignmanager?.firstName
             ? ` ${assignmanager?.firstName} ${assignmanager?.lastName}`
             : ""}
         </p>
@@ -100,7 +100,6 @@ function ActivityCard({
           id={id}
           LinkID={linkID}
           fetchActivity={fetchActivity}
-          fetchnames={fetchnames}
         />
 
         <button
