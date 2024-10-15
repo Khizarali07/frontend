@@ -117,8 +117,8 @@ export default function AddActivity({ fetch }) {
               <label htmlFor="firstName">Link To:</label>
               <select
                 id="firstName"
-                name="assignedTo"
-                value={formData.assignedTo}
+                name="LinkID"
+                value={formData.LinkID}
                 onChange={handleChange}
                 style={{ cursor: "auto" }}
                 required
@@ -134,8 +134,8 @@ export default function AddActivity({ fetch }) {
               <label htmlFor="firstName">Assigned To Managers:</label>
               <select
                 id="firstName"
-                name="LinkID"
-                value={formData.LinkID}
+                name="assignedTo"
+                value={formData.assignedTo}
                 onChange={handleChange}
                 style={{ cursor: "auto" }}
                 required
