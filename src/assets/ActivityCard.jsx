@@ -1,5 +1,6 @@
 import Updateactivity from "./modals/Updateactivity";
 import Deleteactivity from "./modals/Deleteactivity";
+import { useEffect, useState } from "react";
 
 function ActivityCard({
   assignTo,
@@ -26,6 +27,25 @@ function ActivityCard({
     }
   };
 
+  const [linkmember, setlinkmember] = useState("");
+  const [assignmanager, setassignmanager] = useState("");
+
+  const fetchnames = async () => {
+    const res = await axios({
+      method: "GET",
+      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getallusers",
+      // Important: include credentials
+    });
+    const members = res.data.data.data;
+
+    setlinkmember(members.find((member) => member._id === linkID));
+    setassignmanager(members.find((member) => member._id === assignTo));
+
+    console.log("this is your desired data : ", linkmember, assignmanager);
+  };
+
+  useEffect(() => fetchnames(), []);
+
   return (
     <div
       className="card container text-center my-3"
@@ -33,9 +53,14 @@ function ActivityCard({
     >
       <div className="card-body">
         <p className="card-title" style={{ fontSize: "15px" }}>
+          <b style={{ marginRight: "20px" }}>Link To : </b>
+          {` ${assignTo}`}
+        </p>
+        <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Assign To : </b>
           {` ${assignTo}`}
         </p>
+
         <h6 className="card-subtitle my-3 text-body-secondary">
           {activityDescription}
         </h6>
