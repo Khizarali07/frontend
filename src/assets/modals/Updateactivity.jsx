@@ -12,6 +12,7 @@ function Updateactivity({
   id,
   LinkID,
   fetchActivity,
+  fetchnames,
 }) {
   const [formData, setFormData] = useState({
     LinkID,
@@ -46,6 +47,7 @@ function Updateactivity({
     // }
     console.log(formData.assignedTo);
     await fetchActivity(); // Refresh the members list after adding
+    await fetchnames();
   };
 
   const fetchmembers = async () => {

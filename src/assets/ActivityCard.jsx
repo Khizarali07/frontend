@@ -44,7 +44,6 @@ function ActivityCard({
 
   useEffect(() => {
     fetchnames();
-    console.log(linkmember, assignmanager);
   }, []);
 
   return (
@@ -88,6 +87,7 @@ function ActivityCard({
           id={id}
           LinkID={linkID}
           fetchActivity={fetchActivity}
+          fetchnames={fetchnames}
         />
 
         <button
