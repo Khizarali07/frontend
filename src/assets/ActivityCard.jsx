@@ -32,21 +32,14 @@ function ActivityCard({
   const [assignmanager, setassignmanager] = useState([]);
 
   const fetchnames = async () => {
-    const res1 = await axios({
+    const res = await axios({
       method: "GET",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${linkID}`,
+      url: "https://backend-production-e5ac.up.railway.app/api/v1/users/getallusers",
       // Important: include credentials
     });
-
-    await setlinkmember(res1.data.data.currentuser);
-
-    const res2 = await axios({
-      method: "GET",
-      url: `https://backend-production-e5ac.up.railway.app/api/v1/users/getdata/${assignTo}`,
-      // Important: include credentials
-    });
-
-    await setassignmanager(res2.data.data.currentuser);
+    const members = res.data.data.data;
+    setlinkmember(members.find((member) => member._id === linkID));
+    setassignmanager(members.find((member) => member._id === assignTo));
   };
 
   useEffect(() => {
