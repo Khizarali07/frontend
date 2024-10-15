@@ -28,8 +28,8 @@ function ActivityCard({
     }
   };
 
-  const [linkmember, setlinkmember] = useState("");
-  const [assignmanager, setassignmanager] = useState("");
+  const [linkmember, setlinkmember] = useState([]);
+  const [assignmanager, setassignmanager] = useState([]);
 
   const fetchnames = async () => {
     const res = await axios({
@@ -43,7 +43,10 @@ function ActivityCard({
     setassignmanager(members.find((member) => member._id === assignTo));
   };
 
-  useEffect(() => fetchnames(), []);
+  useEffect(() => {
+    fetchnames();
+    console.log(linkmember, assignmanager);
+  }, []);
 
   return (
     <div
@@ -53,11 +56,11 @@ function ActivityCard({
       <div className="card-body">
         <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Link To : </b>
-          {` ${linkmember.firstName} ${linkmember.lastName}`}
+          {` ${linkmember?.firstName} ${linkmember?.lastName}`}
         </p>
         <p className="card-title" style={{ fontSize: "15px" }}>
           <b style={{ marginRight: "20px" }}>Assign To : </b>
-          {` ${assignmanager.firstName} ${assignmanager.lastName}`}
+          {` ${assignmanager?.firstName} ${assignmanager?.lastName}`}
         </p>
 
         <h6 className="card-subtitle my-3 text-body-secondary">
