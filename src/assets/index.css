@@ -25,7 +25,7 @@ body {
   grid-template-rows: auto auto 1fr auto;
 }
 .actions::placeholder {
-  color: #5a3e2b !important;
+  color: black !important;
 }
 
 .fitwidth {
