@@ -13,6 +13,7 @@ export default function AddMember({ fetchM, role }) {
       return {
         firstName: "",
         lastName: "",
+        status: "",
       };
     }
     return {};
@@ -144,6 +145,23 @@ export default function AddMember({ fetchM, role }) {
                     style={{ cursor: "auto" }}
                     required
                   />
+                </>
+              ) : (
+                ""
+              )}
+
+              {role === "Member" ? (
+                <>
+                  <label htmlFor="email">Status :</label>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Less Active">Less Active</option>
+                    <option value="Do Not Contact">Don Not Contact</option>
+                  </select>
                 </>
               ) : (
                 ""
