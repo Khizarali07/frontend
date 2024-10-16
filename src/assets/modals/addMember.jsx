@@ -13,7 +13,7 @@ export default function AddMember({ fetchM, role }) {
       return {
         firstName: "",
         lastName: "",
-        status: "",
+        status: "Active",
       };
     }
     return {};
