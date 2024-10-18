@@ -168,6 +168,31 @@ function Members({ user }) {
         setsorteditems(members);
       }
     }
+    if (status === "moved") {
+      if (sortbydate === "default" || sortbydate === "assending_d") {
+        const res = await axios({
+          method: "GET",
+          url: "https://backend-production-e5ac.up.railway.app/api/v1/users/moved",
+          // Important: include credentials
+        });
+        members = res.data.data.data;
+
+        setM(members);
+        setsorteditems(members);
+      }
+
+      if (sortbydate === "desending_d") {
+        const res = await axios({
+          method: "GET",
+          url: "https://backend-production-e5ac.up.railway.app/api/v1/users/moveddesc",
+          // Important: include credentials
+        });
+        members = res.data.data.data;
+
+        setM(members);
+        setsorteditems(members);
+      }
+    }
   };
 
   const handleSearch = (query) => {

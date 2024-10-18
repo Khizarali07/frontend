@@ -160,7 +160,8 @@ export default function AddMember({ fetchM, role }) {
                   >
                     <option value="Active">Active</option>
                     <option value="Less Active">Less Active</option>
-                    <option value="Do Not Contact">Don Not Contact</option>
+                    <option value="Do Not Contact">Do Not Contact</option>
+                    <option value="Moved">Moved</option>
                   </select>
                 </>
               ) : (

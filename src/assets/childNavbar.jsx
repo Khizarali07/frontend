@@ -70,6 +70,7 @@ function ChildNavbar({
                   <option value="active">Active Members</option>
                   <option value="less_active">Less Active Members</option>
                   <option value="do_not_contact">Do Not Contact</option>
+                  <option value="moved">Moved</option>
                 </select>
               </>
             ) : (

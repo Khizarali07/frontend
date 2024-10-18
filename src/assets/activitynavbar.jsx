@@ -50,8 +50,8 @@ function ActivityNavbar({
               onChange={(evt) => setsortbyDateE(evt.target.value)}
               className="actions"
             >
-              <option value="default">Sort b Last Date</option>
-              <option value="asc">Sort b Last Date (Asc)</option>
+              <option value="default">Sort by Last Date</option>
+              <option value="asc">Sort by Last Date (Asc)</option>
               <option value="desc">Sort by Last Date (Desc)</option>
             </select>
 
